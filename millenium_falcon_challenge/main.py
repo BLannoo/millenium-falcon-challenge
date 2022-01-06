@@ -10,13 +10,15 @@ from millenium_falcon_challenge.model.routes import RoutesRepository
 
 
 def main(millennium_falcon_path: Path, empire_path: Path) -> float:
-    millennium_falcon = MillenniumFalcon.parse_raw(millennium_falcon_path.read_text())
     empire = Empire.parse_raw(empire_path.read_text())
+    return main_with_empire_parsed(empire, millennium_falcon_path)
 
+
+def main_with_empire_parsed(empire: Empire, millennium_falcon_path: Path) -> float:
+    millennium_falcon = MillenniumFalcon.parse_raw(millennium_falcon_path.read_text())
     routes_repository = RoutesRepository(
         db_path=millennium_falcon_path.parent / millennium_falcon.routes_db
     )
-
     trajectories = find_all_trajectories(
         routes_repository=routes_repository,
         departure=millennium_falcon.departure,
@@ -24,5 +26,4 @@ def main(millennium_falcon_path: Path, empire_path: Path) -> float:
         countdown=empire.countdown,
         autonomy=millennium_falcon.autonomy,
     )
-
     return find_best_odds_of_success(trajectories, empire)
