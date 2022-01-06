@@ -1,14 +1,15 @@
 from pathlib import Path
 
-from millenium_falcon_challenge.algorithm import find_all_trajectories
+from millenium_falcon_challenge.logic.algorithm import (
+    find_all_trajectories,
+    find_best_odds_of_success,
+)
 from millenium_falcon_challenge.model.empire import Empire
 from millenium_falcon_challenge.model.millennium_falcon import MillenniumFalcon
 from millenium_falcon_challenge.model.routes import RoutesRepository
 
 
-def odds_of_reaching_destination(
-    millennium_falcon_path: Path, empire_path: Path
-) -> float:
+def main(millennium_falcon_path: Path, empire_path: Path) -> float:
     millennium_falcon = MillenniumFalcon.parse_raw(millennium_falcon_path.read_text())
     empire = Empire.parse_raw(empire_path.read_text())
 
@@ -24,8 +25,4 @@ def odds_of_reaching_destination(
         autonomy=millennium_falcon.autonomy,
     )
 
-    if len(trajectories) == 0:
-        return 0.0
-    return 1.0 - min(
-        trajectory.odds_of_capture(empire.bounty_hunters) for trajectory in trajectories
-    )
+    return find_best_odds_of_success(trajectories, empire)

@@ -1,8 +1,9 @@
 from dataclasses import dataclass
 from typing import Set
 
+from millenium_falcon_challenge.model.empire import Empire
 from millenium_falcon_challenge.model.routes import RoutesRepository
-from millenium_falcon_challenge.trajectory import Trajectory
+from millenium_falcon_challenge.logic.trajectory import Trajectory
 
 
 @dataclass(frozen=True)
@@ -68,3 +69,11 @@ def _determine_next_stops(
     )
 
     return next_stops
+
+
+def find_best_odds_of_success(trajectories: Set[Trajectory], empire: Empire) -> float:
+    if len(trajectories) == 0:
+        return 0.0
+    return 1.0 - min(
+        trajectory.odds_of_capture(empire.bounty_hunters) for trajectory in trajectories
+    )

@@ -1,13 +1,13 @@
 import pytest  # type: ignore
 from assertpy import assert_that  # type: ignore
 
-from millenium_falcon_challenge.algorithm import (
+from millenium_falcon_challenge.logic.algorithm import (
     find_all_trajectories,
 )
 from millenium_falcon_challenge.consts import HYPERSPACE_LABEL
 from millenium_falcon_challenge.model.empire import BountyHunter
 from millenium_falcon_challenge.model.routes import RoutesRepository
-from millenium_falcon_challenge.trajectory import Trajectory
+from millenium_falcon_challenge.logic.trajectory import Trajectory
 
 
 def test_query_routes(routes_repository: RoutesRepository):

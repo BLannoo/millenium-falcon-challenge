@@ -3,7 +3,7 @@ from pathlib import Path
 import pytest  # type: ignore
 from assertpy import assert_that  # type: ignore
 
-from millenium_falcon_challenge.main import odds_of_reaching_destination
+from millenium_falcon_challenge.main import main
 from tests.conftest import TEST_ROOT_FOLDER
 from tests.model.answer import Answer
 
@@ -22,6 +22,6 @@ def test_odds_of_reaching_destination(input_folder: Path):
     empire_path = input_folder / "empire.json"
     answer_path = input_folder / "answer.json"
 
-    assert_that(
-        odds_of_reaching_destination(millennium_falcon_path, empire_path)
-    ).is_equal_to(Answer.parse_raw(answer_path.read_text()).odds)
+    assert_that(main(millennium_falcon_path, empire_path)).is_equal_to(
+        Answer.parse_raw(answer_path.read_text()).odds
+    )

@@ -2,16 +2,11 @@
 
 The assignment description can be found: [here](./doc/assignement.md)
 
-The core setup can be found bellow
-Some optional setup can be found: [here](./doc/optional-setup.md)
+The core project setup can be found bellow.
+Setup not specific to the project (poetry, brew, pipx) can be found: [here](./doc/non-project-setup.md)
+Some optional tooling can be found: [here](./doc/optional-setup.md)
 
-## Setup
-
-Install poetry with:
-
-```shell
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-```
+## Setup to run tests
 
 Install the project with:
 
@@ -19,8 +14,28 @@ Install the project with:
 poetry install
 ```
 
-## Run tests
+Run tests with:
 
 ```shell
 poetry run pytest
+```
+
+## Setup to run CLI
+
+Create a wheel with:
+
+```shell
+poetry build
+```
+
+Install the CLI as an executable using pipx:
+
+```shell
+pipx install dist/millenium_falcon_challenge-0.1.0-py3-none-any.whl
+```
+
+Run the CLI with:
+
+```shell
+give-me-the-odds examples/example1/millennium-falcon.json examples/example1/empire.json
 ```
