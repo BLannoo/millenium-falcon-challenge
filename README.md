@@ -39,3 +39,18 @@ Run the CLI with:
 ```shell
 give-me-the-odds examples/example1/millennium-falcon.json examples/example1/empire.json
 ```
+
+## Setup to run backend and frontend
+
+Start up the backend
+```shell
+poetry run uvicorn millenium_falcon_challenge.back_end:app --reload --port 5000
+```
+
+Start up the front end in another shell
+```shell
+cd frontend
+npm run serve
+```
+
+Go to http://localhost:8080/
