@@ -42,15 +42,11 @@ give-me-the-odds examples/example1/millennium-falcon.json examples/example1/empi
 
 ## Setup to run backend and frontend
 
-Start up the backend
+To run the full stack application you will need to have docker running,
+in which case you can run:
+
 ```shell
-poetry run uvicorn millenium_falcon_challenge.back_end:app --reload --port 5000
+docker-compose up --build
 ```
 
-Start up the front end in another shell
-```shell
-cd frontend
-npm run serve
-```
-
-Go to http://localhost:8080/
+The application is served [here](http://localhost:8080/)
